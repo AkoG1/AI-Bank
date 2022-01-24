@@ -50,7 +50,7 @@ class LogInFragment : BaseFragment<LogInFragmentBinding>(LogInFragmentBinding::i
     private fun logIn() {
         binding.signIn.setOnClickListener {
             if (binding.email.text.isNullOrEmpty() || binding.password.text.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.please_fill_all_fields), Toast.LENGTH_SHORT).show()
 
             }else {
                 viewLifecycleOwner.lifecycleScope.launch {

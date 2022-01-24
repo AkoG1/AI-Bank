@@ -85,7 +85,7 @@ class RegistrationFragment : BaseFragment<RegistrationFragmentBinding>(Registrat
             if (username.isNullOrEmpty() || email.isNullOrEmpty() || password.isNullOrEmpty() || repeatPassword.isNullOrEmpty() || phoneNumber.isNullOrEmpty() || password != repeatPassword && !binding.checkBox.isChecked) {
                 Toast.makeText(
                     requireContext(),
-                    "Please check all fields requirements",
+                    getString(R.string.please_check_all_fields_requirements),
                     Toast.LENGTH_SHORT
                 ).show()
 

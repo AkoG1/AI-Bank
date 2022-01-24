@@ -2,4 +2,36 @@
     <string name="app_name">Ai Bank</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="password">Password</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="account_successfully_activated">Account Successfully Activated</string>
+    <string name="continue_to_log_in_page">Continue To Log In Page</string>
+    <string name="continue_to_your_account">Continue To Your Account</string>
+    <string name="sms">SMS</string>
+    <string name="enter_your_code_here">Enter your code here</string>
+    <string name="code_will_be_sent_on">Code will be sent on</string>
+    <string name="verification">Verification</string>
+    <string name="new_account">New Account</string>
+    <string name="account_name">Account name</string>
+    <string name="enter_your_account_name">* Enter your account name</string>
+    <string name="email">Email</string>
+    <string name="_enter_your_email">* Enter your Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="_repeat_your_password">* Repeat your password</string>
+    <string name="_enter_your_phone_number">* Enter your phone number</string>
+    <string name="one_time_code">One Time Code</string>
+    <string name="_enter_your_code">* Enter your code</string>
+    <string name="sms">SMS</string>
+    <string name="_">*</string>
+    <string name="terms_and_conditions">I confirm that I have read and agree to the Terms and Conditions, Exchange Terms and Privacy Policy</string>
+    <string name="star">*</string>
+    <string name="create_account">Create Account</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="please_check_all_fields_requirements">Please check all fields requirements</string>
 </resources>
