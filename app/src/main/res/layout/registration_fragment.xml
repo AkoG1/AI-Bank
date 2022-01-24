@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.registrationFragment.RegistrationFragment">
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/header_shape">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/backButton"
+                    android:layout_width="12dp"
+                    android:layout_height="17dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="23dp"
+                    android:background="@drawable/ic_backbutton" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="197dp"
+                    android:layout_height="33dp"
+                    android:layout_marginStart="65dp"
+                    android:gravity="center"
+                    android:text="New Account"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="10dp"
+            android:text="Account name"
+            android:textColor="#30BB2E"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/ic_edittextbackground"
+            android:hint="* Enter your account name"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="10dp"
+            android:text="Email"
+            android:textColor="#30BB2E"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/ic_edittextbackground"
+            android:hint="* Enter your Email"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="10dp"
+            android:text="Password"
+            android:textColor="#30BB2E"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/ic_edittextbackground"
+            android:hint="* Enter your password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="10dp"
+            android:text="Repeat password"
+            android:textColor="#30BB2E"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/repeatPassword"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/ic_edittextbackground"
+            android:hint="* Repeat your password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:text="Phone number (Format 995*********)"
+            android:textColor="#30BB2E"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/ic_edittextbackground"
+            android:hint="* Enter your phone number"
+            android:inputType="number"
+            android:paddingStart="10dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="10dp"
+            android:text="One Time Code"
+            android:textColor="#30BB2E"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="180dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="21dp"
+                android:background="@drawable/ic_edittextbackground"
+                android:hint="* Enter your code"
+                android:inputType="number"
+                android:paddingStart="10dp"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="54dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_sms"
+                android:inputType="number"
+                android:text="SMS"
+                android:id="@+id/sendSMS"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:textAlignment="center"
+                    android:layout_height="20dp"
+                    android:text="*"
+                    android:textSize="18sp"
+                    android:layout_marginStart="26dp"
+                    android:layout_gravity="center"
+                    android:textColor="#A3A1A1"/>
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="25dp"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:text="I confirm that I have read and agree to the Terms and Conditions, Exchange Terms and Privacy Policy"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/createAccount"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_startpagesbutton"
+                android:clickable="false"
+                android:text="Create Account"
+                android:textColor="@color/white"
+                android:textSize="19sp" />
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="685dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/imageviewLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/man"
+            android:layout_width="150dp"
+            android:layout_height="314dp"
+            android:src="@drawable/ic_registraionfragmentman"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageviewLayout"
+        android:id="@+id/progressbar"
+        android:visibility="invisible"
+        android:layout_marginBottom="100dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

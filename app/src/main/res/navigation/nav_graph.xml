@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logInFragment">
+
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.aibank.ui.logInFragment.LogInFragment"
+        android:label="log_in_fragment"
+        tools:layout="@layout/log_in_fragment" >
+        <action
+            android:id="@+id/action_logInFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_oneTimeCodeFragment"
+            app:destination="@id/oneTimeCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.aibank.ui.registrationFragment.RegistrationFragment"
+        android:label="registration_fragment"
+        tools:layout="@layout/registration_fragment" >
+        <action
+            android:id="@+id/action_registrationFragment_to_succesfullRegistrationFragment"
+            app:destination="@id/succesfullRegistrationFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oneTimeCodeFragment"
+        android:name="com.example.aibank.ui.oneTimeCodeFragment.OneTimeCodeFragment"
+        android:label="OneTimeCodeFragment" >
+        <action
+            android:id="@+id/action_oneTimeCodeFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_oneTimeCodeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/succesfullRegistrationFragment"
+        android:name="com.example.aibank.ui.succesfullRegistrationFragment.SuccesfullRegistrationFragment"
+        android:label="SuccesfullRegistrationFragment" >
+        <argument
+            android:name="Email"
+            app:argType="string" />
+        <argument
+            android:name="Password"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_succesfullRegistrationFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.aibank.ui.homeFragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+</navigation>
