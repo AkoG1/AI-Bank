@@ -41,17 +41,17 @@ class RegistrationViewModel @Inject constructor(private val repository: Reposito
         }
     }
 
-    private val _sms = MutableStateFlow<Int>(0)
-    val sms get() = _sms
-
-    suspend fun sendSMS(phoneNumber: String) {
-
-        val randomNumber = (1000..9999).random()
-        _sms.emit(randomNumber)
-        repository.sendSMS(phoneNumber, "AI Bank", "Verification Code : $randomNumber")
-        Log.d("12345", "sendSMS: 111")
-
-    }
+//    private val _sms = MutableStateFlow<Int>(0)
+//    val sms get() = _sms
+//
+//    suspend fun sendSMS(phoneNumber: String) {
+//
+//        val randomNumber = (1000..9999).random()
+//        _sms.emit(randomNumber)
+//        repository.sendSMS(phoneNumber, "AI Bank", "Verification Code : $randomNumber")
+//        Log.d("12345", "sendSMS: 111")
+//
+//    }
 
 }
 

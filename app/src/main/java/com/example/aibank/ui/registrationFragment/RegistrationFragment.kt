@@ -31,19 +31,19 @@ class RegistrationFragment : BaseFragment<RegistrationFragmentBinding>(Registrat
         checkPassword()
         checkEmailPattern()
         backButtonAction()
-        sendSMS()
+//        sendSMS()
     }
 
-    private fun sendSMS() {
-            val phoneNumber = binding.phoneNumber.text.toString()
-            binding.sendSMS.setOnClickListener {
-                Log.d("12345", "sendSMS: 11")
-                viewLifecycleOwner.lifecycleScope.launch {
-                    viewModel.sendSMS(phoneNumber)
-                    Log.d("12345", "sendSMS: 1")
-                }
-        }
-    }
+//    private fun sendSMS() {
+//            val phoneNumber = binding.phoneNumber.text.toString()
+//            binding.sendSMS.setOnClickListener {
+//                Log.d("12345", "sendSMS: 11")
+//                viewLifecycleOwner.lifecycleScope.launch {
+//                    viewModel.sendSMS(phoneNumber)
+//                    Log.d("12345", "sendSMS: 1")
+//                }
+//        }
+//    }
 
     private fun backButtonAction() {
         binding.backButton.setOnClickListener {

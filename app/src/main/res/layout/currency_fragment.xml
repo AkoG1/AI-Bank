@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_home_background"
+    android:id="@+id/swipeRefreshLayout"
+    tools:context=".CurrencyFragment">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/header_shape">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="23dp"
+                    android:text="Exchange Rates"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/lostConnection"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Connection Lost"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="@drawable/lost_connection_shape"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerForMainExchanges"
+            android:layout_width="match_parent"
+            android:layout_height="138dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="46dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="325dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/ic_currencies_recycler_background"
+            android:orientation="vertical"
+            android:layout_height="247dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="120dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:text="ALL CURRENCIES"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="28dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:text="BUY"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="70dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="33dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:text="SELL"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="40dp"/>
+                
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerForOthers"
+                android:layout_width="321dp"
+                android:layout_height="215dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_roundedrectatngle" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="335dp"
+            android:layout_height="127dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="41dp"
+            android:background="@drawable/ic_roundedrectatngle">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="30dp"
+                    android:text="GEL"
+                    android:id="@+id/fromTV"
+                    android:drawableEnd="@drawable/ic_drop_down"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="21sp"/>
+
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="105dp"
+                    android:layout_height="41dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:hint="0.00"
+                    android:id="@+id/fromET"
+                    android:paddingEnd="5dp"
+                    android:textAlignment="textEnd"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    android:layout_marginStart="104dp"
+                    android:background="@drawable/ic_exchangeedittexts"
+                    tools:ignore="RtlCompat" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="0.5">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="115dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/changeCurrencies"
+                    android:background="@drawable/ic_changebutton"/>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="30dp"
+                    android:text="USD"
+                    android:id="@+id/toTV"
+                    android:drawableEnd="@drawable/ic_drop_down"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="21sp"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="105dp"
+                    android:layout_height="41dp"
+                    android:gravity="center"
+                    android:textAlignment="textEnd"
+                    android:hint="0.00"
+                    android:textColor="@color/black"
+                    android:id="@+id/toET"
+                    android:textSize="23sp"
+                    android:inputType="number"
+                    android:paddingEnd="5dp"
+                    android:layout_marginStart="104dp"
+                    android:background="@drawable/ic_exchangeedittexts"
+                    tools:ignore="RtlCompat" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
