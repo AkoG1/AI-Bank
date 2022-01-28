@@ -22,7 +22,7 @@
                 android:layout_width="90dp"
                 android:layout_height="26.5dp"
                 android:layout_marginStart="10dp"
-                android:text="US Dollar"
+                android:text="@string/us_dollar"
                 android:id="@+id/fullName"
                 android:layout_gravity="center"
                 android:textColor="#1A4314"
@@ -46,7 +46,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="24dp"
                 android:layout_height="17dp"
-                android:text="USD"
+                android:text="@string/usd"
                 android:id="@+id/shortName"
                 android:textColor="#1A4314"
                 android:textSize="12sp"
@@ -68,7 +68,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="25dp"
                     android:layout_height="17dp"
-                    android:text="BUY"
+                    android:text="@string/buy"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -79,7 +79,7 @@
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:textColor="#1A4314"
-                    android:text="0.000"
+                    android:text="@string/_0_000"
                     android:id="@+id/buyCurrency"
                     android:textAlignment="textEnd"
                     android:textSize="17sp"
@@ -105,7 +105,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="29dp"
                     android:layout_height="17dp"
-                    android:text="SELL"
+                    android:text="@string/sell"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -116,12 +116,13 @@
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:textColor="#1A4314"
-                    android:text="0.000"
+                    android:text="@string/_0_000"
                     android:id="@+id/sellCurrency"
                     android:textAlignment="textEnd"
                     android:textSize="17sp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="16dp"/>
+                    android:layout_marginStart="16dp"
+                    tools:ignore="RtlCompat" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

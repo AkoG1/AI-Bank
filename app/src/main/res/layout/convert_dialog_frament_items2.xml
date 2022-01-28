@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="GEL"
+        android:text="@string/gel"
         android:gravity="center"
         android:id="@+id/TV"
         android:textColor="@color/black"

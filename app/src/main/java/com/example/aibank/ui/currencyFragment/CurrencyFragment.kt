@@ -1,11 +1,13 @@
 package com.example.aibank.ui.currencyFragment
 
+import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,7 @@ import com.example.aibank.R
 import com.example.aibank.adapters.CurrencyListAdapter
 import com.example.aibank.databinding.CurrencyFragmentBinding
 import com.example.aibank.models.Currency
+import com.example.aibank.ui.network.NetworkConnection
 import com.example.aibanktbcapitest.adapters.MainCurrenciesAdapter
 import com.example.aibankv10.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,7 +50,7 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
         convertPreview()
         setListeners()
         getCurrencyFromDialog()
-//        checkConnection()
+        checkConnection()
     }
 
     private fun getCurrencyFromDialog() {
@@ -175,23 +178,26 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
         }
 
     }
+
+    private fun checkConnection() {
+        //check network conn
+        val networkConnection = NetworkConnection(requireContext())
+        networkConnection.observe(this, Observer { isConnected ->
+            if (isConnected) {
+                binding.lostConnection.visibility = View.GONE
+                binding.swipeRefreshLayout.isRefreshing = false
+            }else {
+                binding.lostConnection.visibility = View.VISIBLE
+                binding.swipeRefreshLayout.isRefreshing = true
+            }
+        })
+    }
+
 }
 
 
 
-//    private fun checkConnection() {
-//        //check network conn
-//        val networkConnection = NetworkConnection(requireContext())
-//        networkConnection.observe(this, Observer { isConnected ->
-//            if (isConnected) {
-//                binding.lostConnection.visibility = View.GONE
-//                binding.swipeRefreshLayout.isRefreshing = false
-//            }else {
-//                binding.lostConnection.visibility = View.VISIBLE
-//                binding.swipeRefreshLayout.isRefreshing = true
-//            }
-//        })
-//    }
+
 
 
 

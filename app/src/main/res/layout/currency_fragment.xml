@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_home_background"
     android:id="@+id/swipeRefreshLayout"
-    tools:context=".CurrencyFragment">
+    tools:context="CurrencyFragment">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -29,7 +29,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:paddingStart="23dp"
-                    android:text="Exchange Rates"
+                    android:text="@string/exchange_rates"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -42,9 +42,10 @@
             android:layout_marginTop="20dp"
             android:id="@+id/lostConnection"
             android:visibility="gone"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
             android:layout_height="40dp"
-            android:text="Connection Lost"
+            android:text="@string/connection_lost"
             android:textSize="17sp"
             android:textColor="@color/white"
             android:textAlignment="center"
@@ -75,7 +76,7 @@
                     android:layout_height="16dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="8dp"
-                    android:text="ALL CURRENCIES"
+                    android:text="@string/all_currencies"
                     android:textStyle="bold"
                     android:textColor="@color/white"/>
 
@@ -84,7 +85,7 @@
                     android:layout_width="28dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:text="BUY"
+                    android:text="@string/buy"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_marginStart="70dp"/>
@@ -93,7 +94,7 @@
                     android:layout_width="33dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:text="SELL"
+                    android:text="@string/sell"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_marginStart="40dp"/>
@@ -127,7 +128,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="bottom"
                     android:layout_marginStart="30dp"
-                    android:text="GEL"
+                    android:text="@string/gel"
                     android:id="@+id/fromTV"
                     android:drawableEnd="@drawable/ic_drop_down"
                     android:textColor="@color/black"
@@ -141,7 +142,7 @@
                     android:layout_height="41dp"
                     android:layout_gravity="bottom"
                     android:gravity="center"
-                    android:hint="0.00"
+                    android:hint="@string/_0_00"
                     android:id="@+id/fromET"
                     android:paddingEnd="5dp"
                     android:textAlignment="textEnd"
@@ -179,7 +180,7 @@
                     android:layout_width="80dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="30dp"
-                    android:text="USD"
+                    android:text="@string/usd"
                     android:id="@+id/toTV"
                     android:drawableEnd="@drawable/ic_drop_down"
                     android:textColor="@color/black"

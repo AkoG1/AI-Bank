@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:text="GEL"
+            android:text="@string/gel"
             android:textAlignment="center"
             android:gravity="center"
             android:textSize="16sp"
@@ -23,7 +23,7 @@
             android:layout_width="75dp"
             android:layout_marginStart="120dp"
             android:layout_height="match_parent"
-            android:text="BUY"
+            android:text="@string/buy"
             android:textAlignment="center"
             android:gravity="center"
             android:textStyle="bold"
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="75dp"
             android:layout_height="match_parent"
-            android:text="SELL"
+            android:text="@string/sell"
             android:textStyle="bold"
             android:textAlignment="center"
             android:gravity="center"
