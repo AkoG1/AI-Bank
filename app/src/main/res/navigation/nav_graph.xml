@@ -14,8 +14,8 @@
             android:id="@+id/action_logInFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
-            android:id="@+id/action_logInFragment_to_oneTimeCodeFragment"
-            app:destination="@id/oneTimeCodeFragment" />
+            android:id="@+id/action_logInFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -28,17 +28,6 @@
         <action
             android:id="@+id/action_registrationFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/oneTimeCodeFragment"
-        android:name="com.example.aibank.ui.oneTimeCodeFragment.OneTimeCodeFragment"
-        android:label="OneTimeCodeFragment" >
-        <action
-            android:id="@+id/action_oneTimeCodeFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
-        <action
-            android:id="@+id/action_oneTimeCodeFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/succesfullRegistrationFragment"

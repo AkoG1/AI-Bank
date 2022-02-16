@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aibank.models.ConvertJson
 import com.example.aibank.models.Currency
-import com.example.aibank.ui.others.CurrenciesRepository
+import com.example.aibank.ui.utils.Repository
+import com.example.aibank.ui.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,47 +14,43 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CurrencyViewModel @Inject constructor(private val repository: CurrenciesRepository) : ViewModel() {
+class CurrencyViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-    var currencyList = mutableListOf<Currency.CommercialRates>()
-    private var _Response = MutableStateFlow<MutableList<Currency.CommercialRates>>(currencyList)
-    var Response : StateFlow<MutableList<Currency.CommercialRates>> = _Response
-
-
+    private var _response =
+        MutableStateFlow<Resource<MutableList<Currency.CommercialRates>>>(Resource.Idle)
+    var response: StateFlow<Resource<MutableList<Currency.CommercialRates>>> = _response
 
     fun loadCurrencies() {
         viewModelScope.launch {
+            _response.emit(Resource.Loading)
             val value = repository.getCurrencies()
-            _Response.value = value.commercialRatesList as MutableList<Currency.CommercialRates>
-            Log.d("body", "start: ${value} ")
+            _response.emit(value)
         }
     }
 
-    var mainCurrencyList = mutableListOf<Currency.CommercialRates>()
-    private var _Responsemain = MutableStateFlow<MutableList<Currency.CommercialRates>>(mainCurrencyList)
-    var Responsemain : StateFlow<MutableList<Currency.CommercialRates>> = _Responsemain
-
+    private var _responsemain =
+        MutableStateFlow<Resource<MutableList<Currency.CommercialRates>>>(Resource.Idle)
+    var responsemain: StateFlow<Resource<MutableList<Currency.CommercialRates>>> = _responsemain
 
 
     fun loadMainCurrencies() {
         viewModelScope.launch {
-            val value = repository.getMainCurrencies().commercialRatesList as MutableList<Currency.CommercialRates>
-            val sortedValue = mutableListOf<Currency.CommercialRates>(value[2],value[0],value[1])
-            _Responsemain.value = sortedValue
-            Log.d("body", "start: ${sortedValue} ")
+            _responsemain.emit(Resource.Loading)
+            val value = repository.getMainCurrencies()
+            _responsemain.emit(value)
         }
     }
 
-    private var _Responseconvert = MutableStateFlow<ConvertJson>(ConvertJson("0","eur","usd","0"))
-    var responseconvert : StateFlow<ConvertJson> = _Responseconvert
+    private var _responseconvert =
+        MutableStateFlow<ConvertJson>(ConvertJson("0", "usd", "gel", "0"))
+    var responseconvert: StateFlow<ConvertJson> = _responseconvert
 
 
-
-    fun convertCurrencies(amount: String, from:String, to:String) {
+    fun convertCurrencies(amount: String, from: String, to: String) {
         viewModelScope.launch {
             val value = repository.convertPreview(amount, from, to)
-            _Responseconvert.value = value
-            Log.d("body1", "start: ${value} ")
+            _responseconvert.emit(value)
+            Log.d("body1", "start: $value ")
         }
     }
 

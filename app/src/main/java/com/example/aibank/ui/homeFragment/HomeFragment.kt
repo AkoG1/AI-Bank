@@ -6,7 +6,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.aibank.R
 import com.example.aibank.databinding.FragmentHomeBinding
 import com.example.aibank.ui.currencyFragment.CurrencyFragment
-import com.example.aibankv10.ui.BaseFragment
+import com.example.aibank.ui.BaseFragment
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {

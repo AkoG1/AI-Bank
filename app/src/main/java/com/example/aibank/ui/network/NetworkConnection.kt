@@ -14,9 +14,9 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
 
 
     private var connectivityanager: ConnectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    private lateinit var networkCallback : ConnectivityManager.NetworkCallback
+    private lateinit var networkCallback: ConnectivityManager.NetworkCallback
 
     override fun onActive() {
         super.onActive()
@@ -30,8 +30,8 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
             }
             else -> {
                 context.registerReceiver(
-                        networkReciever,
-                        IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+                    networkReciever,
+                    IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
                 )
             }
         }
@@ -42,18 +42,18 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
 
     private fun lollipopNetworkRequest() {
         val requestBuilder = NetworkRequest.Builder()
-                .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
+            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
 
         connectivityanager.registerNetworkCallback(
-                requestBuilder.build(),
-                connectivityManagerCallback()
+            requestBuilder.build(),
+            connectivityManagerCallback()
         )
     }
 
 
-    private fun connectivityManagerCallback() : ConnectivityManager.NetworkCallback {
+    private fun connectivityManagerCallback(): ConnectivityManager.NetworkCallback {
         networkCallback = object : ConnectivityManager.NetworkCallback() {
             override fun onLost(network: Network) {
                 super.onLost(network)
@@ -68,6 +68,7 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
         }
         return networkCallback
     }
+
     private val networkReciever = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             updateConnection()
@@ -76,10 +77,9 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
 
 
     private fun updateConnection() {
-        val activeNetwork : NetworkInfo? = connectivityanager.activeNetworkInfo
+        val activeNetwork: NetworkInfo? = connectivityanager.activeNetworkInfo
         postValue(activeNetwork?.isConnected == true)
     }
 
 
-
-    }
+}

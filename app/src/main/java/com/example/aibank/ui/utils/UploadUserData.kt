@@ -3,7 +3,7 @@ package com.example.aibankv10.ui.others
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import com.example.aibank.ui.others.User
+import com.example.aibank.ui.utils.User
 import com.google.firebase.database.FirebaseDatabase
 
 fun uploadUserData(uid: String, username: String, phoneNumber: String, context: Context) {

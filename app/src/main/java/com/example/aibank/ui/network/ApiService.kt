@@ -1,4 +1,4 @@
-package com.example.aibankv10.ui.network
+package com.example.aibank.ui.network
 
 
 import com.example.aibank.models.ConvertJson

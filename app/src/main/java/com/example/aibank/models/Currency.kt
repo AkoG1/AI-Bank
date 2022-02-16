@@ -11,7 +11,7 @@ data class Currency(
     val base: String?,
     @SerializedName("commercialRatesList")
     val commercialRatesList: List<CommercialRates>?
-): Parcelable{
+) : Parcelable {
     @Parcelize
     data class CommercialRates(
         @SerializedName("buy")
@@ -20,5 +20,5 @@ data class Currency(
         val currency: String?,
         @SerializedName("sell")
         val sell: Double?
-    ): Parcelable
+    ) : Parcelable
 }

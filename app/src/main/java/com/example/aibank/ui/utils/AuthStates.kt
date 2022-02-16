@@ -1,6 +1,4 @@
-package com.example.aibankv10.ui.others
-
-import com.example.aibank.ui.others.User
+package com.example.aibank.ui.utils
 
 sealed interface AuthStates {
     data class AuthSuccess(val user: User) : AuthStates

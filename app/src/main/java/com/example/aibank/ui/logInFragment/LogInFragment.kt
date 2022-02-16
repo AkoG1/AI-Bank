@@ -10,9 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.aibank.R
 import com.example.aibank.databinding.LogInFragmentBinding
-import com.example.aibankv10.ui.BaseFragment
-import com.example.aibankv10.ui.logInFragment.LogInViewModel
-import com.example.aibankv10.ui.others.AuthStates
+import com.example.aibank.ui.BaseFragment
+import com.example.aibank.ui.utils.AuthStates
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -21,7 +20,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LogInFragment : BaseFragment<LogInFragmentBinding>(LogInFragmentBinding::inflate) {
 
-    private val viewModel : LogInViewModel by viewModels()
+    private val viewModel: LogInViewModel by viewModels()
 
     override fun start() {
         goToRegistration()
@@ -33,7 +32,9 @@ class LogInFragment : BaseFragment<LogInFragmentBinding>(LogInFragmentBinding::i
     private fun checkEmailPattern() {
         binding.email.addTextChangedListener {
             binding.email.setBackgroundResource(R.drawable.ic_erroredittextsbackground)
-            if (Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString()).matches() || binding.email.text!!.isEmpty()){
+            if (Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString())
+                    .matches() || binding.email.text!!.isEmpty()
+            ) {
                 binding.email.setBackgroundResource(R.drawable.ic_edittextbackground)
             }
         }
@@ -50,9 +51,13 @@ class LogInFragment : BaseFragment<LogInFragmentBinding>(LogInFragmentBinding::i
     private fun logIn() {
         binding.signIn.setOnClickListener {
             if (binding.email.text.isNullOrEmpty() || binding.password.text.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), getString(R.string.please_fill_all_fields), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.please_fill_all_fields),
+                    Toast.LENGTH_SHORT
+                ).show()
 
-            }else {
+            } else {
                 viewLifecycleOwner.lifecycleScope.launch {
                     with(binding) {
                         val email = binding.email.text.toString()
@@ -60,12 +65,18 @@ class LogInFragment : BaseFragment<LogInFragmentBinding>(LogInFragmentBinding::i
                         viewModel.logInUser(email = email, password = password)
                         viewModel.authStateFlow.collect {
                             when (it) {
-                                is AuthStates.AuthSuccess -> {binding.progressbar.isVisible = false
-                                    val action = LogInFragmentDirections.actionLogInFragmentToOneTimeCodeFragment()
-                                    findNavController().navigate(action)}
+                                is AuthStates.AuthSuccess -> {
+                                    binding.progressbar.isVisible = false
+                                    val action =
+                                        LogInFragmentDirections.actionLogInFragmentToHomeFragment()
+                                    findNavController().navigate(action)
+                                }
                                 is AuthStates.Loading -> binding.progressbar.isVisible = true
-                                is AuthStates.Error -> {binding.progressbar.isVisible = false
-                                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()}
+                                is AuthStates.Error -> {
+                                    binding.progressbar.isVisible = false
+                                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT)
+                                        .show()
+                                }
                                 is AuthStates.Idle -> binding.progressbar.isVisible = false
                             }
                         }
@@ -78,17 +89,25 @@ class LogInFragment : BaseFragment<LogInFragmentBinding>(LogInFragmentBinding::i
     }
 
     private fun fragmentResultListener() {
-        setFragmentResultListener("email") {requestKey, bundle ->
-            if (bundle.getString("bundle1")!= null){
-                binding.email.setText(bundle.getString("bundle1"))
+        setFragmentResultListener(EMAIL) { requestKey, bundle ->
+            if (bundle.getString(BUNDLE_1) != null) {
+                binding.email.setText(bundle.getString(BUNDLE_1))
             }
         }
 
-        setFragmentResultListener("password") {requestKey, bundle ->
-            if (bundle.getString("bundle2")!= null){
-                binding.password.setText(bundle.getString("bundle2"))
+        setFragmentResultListener(PASSWORD) { requestKey, bundle ->
+            if (bundle.getString(BUNDLE_2) != null) {
+                binding.password.setText(bundle.getString(BUNDLE_2))
             }
         }
     }
 
+    companion object {
+        private const val EMAIL = "email"
+        private const val PASSWORD = "password"
+        private const val BUNDLE_1 = "bundle1"
+        private const val BUNDLE_2 = "bundle2"
+
     }
+
+}

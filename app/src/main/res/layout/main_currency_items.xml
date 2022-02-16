@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="134dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="5dp"
-    app:cardCornerRadius="10dp"
+    android:layout_height="136dp"
     android:layout_marginEnd="21dp"
-    android:layout_height="136dp">
+    android:elevation="5dp"
+    app:cardCornerRadius="10dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -19,22 +19,22 @@
             android:layout_weight="0.5">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fullName"
                 android:layout_width="90dp"
                 android:layout_height="26.5dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="@string/us_dollar"
-                android:id="@+id/fullName"
-                android:layout_gravity="center"
                 android:textColor="#1A4314"
-                android:textSize="19sp"/>
-            
+                android:textSize="19sp" />
+
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="20dp"
-                android:layout_marginStart="11dp"
                 android:id="@+id/currencyLogo"
-                android:src="@drawable/ic_usdvector"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:layout_height="25dp"/>
+                android:layout_marginStart="11dp"
+                android:src="@drawable/ic_usdvector" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -42,59 +42,59 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3">
-            
+
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/shortName"
                 android:layout_width="24dp"
                 android:layout_height="17dp"
+                android:layout_marginStart="14dp"
                 android:text="@string/usd"
-                android:id="@+id/shortName"
                 android:textColor="#1A4314"
-                android:textSize="12sp"
-                android:layout_marginStart="14dp"/>
+                android:textSize="12sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-    
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="25dp"
                     android:layout_height="17dp"
-                    android:text="@string/buy"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:layout_marginStart="19dp"
-                    android:layout_gravity="center"/>
+                    android:text="@string/buy"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/buyCurrency"
                     android:layout_width="50dp"
                     android:layout_height="20dp"
-                    android:textColor="#1A4314"
-                    android:text="@string/_0_000"
-                    android:id="@+id/buyCurrency"
-                    android:textAlignment="textEnd"
-                    android:textSize="17sp"
                     android:layout_gravity="center"
                     android:layout_marginStart="20dp"
+                    android:text="@string/_0_000"
+                    android:textAlignment="textEnd"
+                    android:textColor="#1A4314"
+                    android:textSize="17sp"
                     tools:ignore="RtlCompat" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="100dp"
-                android:layout_gravity="center"
                 android:layout_height="0dp"
-                android:background="@drawable/ic_line"
-                android:layout_weight="0.02"/>
+                android:layout_gravity="center"
+                android:layout_weight="0.02"
+                android:background="@drawable/ic_line" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -105,23 +105,23 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="29dp"
                     android:layout_height="17dp"
-                    android:text="@string/sell"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:layout_marginStart="19dp"
-                    android:layout_gravity="center"/>
+                    android:text="@string/sell"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sellCurrency"
                     android:layout_width="50dp"
                     android:layout_height="20dp"
-                    android:textColor="#1A4314"
-                    android:text="@string/_0_000"
-                    android:id="@+id/sellCurrency"
-                    android:textAlignment="textEnd"
-                    android:textSize="17sp"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
+                    android:text="@string/_0_000"
+                    android:textAlignment="textEnd"
+                    android:textColor="#1A4314"
+                    android:textSize="17sp"
                     tools:ignore="RtlCompat" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

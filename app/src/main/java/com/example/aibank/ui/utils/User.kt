@@ -1,4 +1,4 @@
-package com.example.aibank.ui.others
+package com.example.aibank.ui.utils
 
 data class User( var uid: String? = "",
                  val email: String? = null,

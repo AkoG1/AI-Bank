@@ -7,7 +7,6 @@
     tools:context=".ui.registrationFragment.RegistrationFragment">
 
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,9 +26,9 @@
                     android:id="@+id/backButton"
                     android:layout_width="12dp"
                     android:layout_height="17dp"
-                    android:layout_marginBottom="1dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="23dp"
+                    android:layout_marginBottom="1dp"
                     android:background="@drawable/ic_backbutton" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -183,6 +182,7 @@
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sendSMS"
                 android:layout_width="54dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -190,7 +190,6 @@
                 android:background="@drawable/ic_sms"
                 android:inputType="number"
                 android:text="@string/sms"
-                android:id="@+id/sendSMS"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
@@ -209,20 +208,20 @@
 
                 <TextView
                     android:layout_width="20dp"
-                    android:textAlignment="center"
                     android:layout_height="20dp"
-                    android:text="@string/star"
-                    android:textSize="18sp"
-                    android:layout_marginStart="26dp"
                     android:layout_gravity="center"
-                    android:textColor="#A3A1A1"/>
+                    android:layout_marginStart="26dp"
+                    android:text="@string/star"
+                    android:textAlignment="center"
+                    android:textColor="#A3A1A1"
+                    android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="25dp"
                     android:layout_height="21dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginEnd="10dp" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -257,7 +256,6 @@
                 android:textSize="19sp" />
 
 
-
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -265,11 +263,11 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imageviewLayout"
         android:layout_width="match_parent"
         android:layout_height="685dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/imageviewLayout"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -283,14 +281,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
+        android:id="@+id/progressbar"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageviewLayout"
-        android:id="@+id/progressbar"
+        android:layout_marginBottom="100dp"
         android:visibility="invisible"
-        android:layout_marginBottom="100dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageviewLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

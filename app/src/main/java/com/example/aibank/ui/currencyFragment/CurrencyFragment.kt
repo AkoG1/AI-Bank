@@ -1,6 +1,7 @@
 package com.example.aibank.ui.currencyFragment
 
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResult
@@ -18,8 +19,9 @@ import com.example.aibank.adapters.CurrencyListAdapter
 import com.example.aibank.databinding.CurrencyFragmentBinding
 import com.example.aibank.models.Currency
 import com.example.aibank.ui.network.NetworkConnection
-import com.example.aibanktbcapitest.adapters.MainCurrenciesAdapter
-import com.example.aibankv10.ui.BaseFragment
+import com.example.aibank.ui.utils.Resource
+import com.example.aibank.adapters.MainCurrenciesAdapter
+import com.example.aibank.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -66,15 +68,24 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
     private fun collect() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.Response.collect {
-                    commercialList.addAll(it)
-                    initRecyclerView()
+                viewModel.response.collect {
+                    when (it) {
+                        is Resource.Loading -> binding.swipeRefreshLayout.isRefreshing = true
+                        is Resource.Success -> {
+                            initRecyclerView(it.data!!)
+                            binding.swipeRefreshLayout.isRefreshing = false
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            binding.swipeRefreshLayout.isRefreshing = false
+                        }
+                    }
                 }
             }
         }
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(commercialList: MutableList<Currency.CommercialRates>) {
         binding.recyclerForOthers.layoutManager = LinearLayoutManager(context)
         val adapter = CurrencyListAdapter()
         binding.recyclerForOthers.adapter = adapter
@@ -83,8 +94,7 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
 
     private fun loadLayoutData() {
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.loadMainCurrencies()
-            initMainCurrenciesRecycler()
+            start()
             binding.swipeRefreshLayout.isRefreshing = false
         }
     }
@@ -96,8 +106,18 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
         binding.recyclerForMainExchanges.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.Responsemain.collect {
-                    adapter.setData(it)
+                viewModel.responsemain.collect {
+                    when (it) {
+                        is Resource.Loading -> binding.swipeRefreshLayout.isRefreshing = true
+                        is Resource.Success -> {
+                            adapter.setData(it.data!!)
+                            binding.swipeRefreshLayout.isRefreshing = false
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            binding.swipeRefreshLayout.isRefreshing = false
+                        }
+                    }
                 }
             }
         }
@@ -186,7 +206,7 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
             if (isConnected) {
                 binding.lostConnection.visibility = View.GONE
                 binding.swipeRefreshLayout.isRefreshing = false
-            }else {
+            } else {
                 binding.lostConnection.visibility = View.VISIBLE
                 binding.swipeRefreshLayout.isRefreshing = true
             }

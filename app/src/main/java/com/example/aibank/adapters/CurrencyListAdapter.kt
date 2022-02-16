@@ -8,14 +8,16 @@ import com.example.aibank.databinding.CurrencyItemsBinding
 import com.example.aibank.models.Currency
 
 
-class CurrencyListAdapter(private val onCurrencyClick: ((currencyName:String)-> Unit)? = null) : RecyclerView.Adapter<CurrencyListAdapter.ViewHolder>(
-) {
+class CurrencyListAdapter() :
+    RecyclerView.Adapter<CurrencyListAdapter.ViewHolder>(
+    ) {
 
     private val currencyList = mutableListOf<Currency.CommercialRates>()
 
-    inner class ViewHolder(private val binding: CurrencyItemsBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: CurrencyItemsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(adapterPosition : Int) {
+        fun onBind(adapterPosition: Int) {
             val model = currencyList[adapterPosition]
             binding.apply {
                 name.text = model.currency.toString()
@@ -27,8 +29,9 @@ class CurrencyListAdapter(private val onCurrencyClick: ((currencyName:String)-> 
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= ViewHolder(
-        CurrencyItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+        CurrencyItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(position)
@@ -42,7 +45,6 @@ class CurrencyListAdapter(private val onCurrencyClick: ((currencyName:String)-> 
         this.currencyList.addAll(currencyList)
         notifyDataSetChanged()
     }
-
 
 
 }
