@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aibank.models.ConvertJson
 import com.example.aibank.models.Currency
-import com.example.aibank.ui.utils.Repository
+import com.example.aibank.repository.Repository
 import com.example.aibank.ui.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

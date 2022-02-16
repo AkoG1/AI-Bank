@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aibank.ui.utils.AuthStates
-import com.example.aibank.ui.utils.Repository
+import com.example.aibank.repository.Repository
 import com.example.aibank.ui.utils.User
 import com.example.aibankv10.ui.others.uploadUserData
 import dagger.hilt.android.lifecycle.HiltViewModel

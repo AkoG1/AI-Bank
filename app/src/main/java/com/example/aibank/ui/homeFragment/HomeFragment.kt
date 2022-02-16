@@ -7,6 +7,7 @@ import com.example.aibank.R
 import com.example.aibank.databinding.FragmentHomeBinding
 import com.example.aibank.ui.currencyFragment.CurrencyFragment
 import com.example.aibank.ui.BaseFragment
+import com.example.aibank.ui.cryptoFragment.CryptoFragment
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -20,7 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.bottomNavigation.setOnClickMenuListener {
             when(it.id){
                 1 -> setFragment(CurrencyFragment.newInstance())
-//                2 -> setFragment(CryptoFragment.newInstance())
+                2 -> setFragment(CryptoFragment.newInstance())
 //                3 -> setFragment(ProfileFragment.newInstance())
 
             }

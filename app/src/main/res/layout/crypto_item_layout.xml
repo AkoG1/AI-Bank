@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    android:layout_height="52dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="13dp"
+    android:layout_marginEnd="4dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="7dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cryptoIcon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="5dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cryptoShortName"
+        android:layout_width="30dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:textColor="#999898"
+        android:textSize="11sp"
+        tools:ignore="SmallSp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cryptoFullName"
+        android:layout_width="60dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="27dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="8sp"
+        tools:ignore="SmallSp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dollar"
+        android:layout_width="10dp"
+        android:layout_height="26dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="80dp"
+        android:gravity="center"
+        android:text="@string/dollar"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/price"
+        android:layout_width="80dp"
+        android:layout_height="26dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+</androidx.cardview.widget.CardView>

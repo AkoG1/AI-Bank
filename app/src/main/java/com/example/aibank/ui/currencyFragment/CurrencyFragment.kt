@@ -37,12 +37,6 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
 
     private var fromOrTo = false
 
-    companion object {
-        fun newInstance(): CurrencyFragment {
-            return CurrencyFragment()
-        }
-    }
-
     override fun start() {
         viewModel.loadCurrencies()
         viewModel.loadMainCurrencies()
@@ -190,13 +184,6 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
             findNavController().navigate(R.id.action_currencyFragment_to_convertDialogFragment)
         }
 
-        binding.changeCurrencies.setOnClickListener {
-            val firstCurrency = binding.fromTV.text.toString()
-            binding.fromTV.text = binding.toTV.text
-            binding.toTV.text = firstCurrency
-
-        }
-
     }
 
     private fun checkConnection() {
@@ -211,6 +198,12 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
                 binding.swipeRefreshLayout.isRefreshing = true
             }
         })
+    }
+
+    companion object {
+        fun newInstance(): CurrencyFragment {
+            return CurrencyFragment()
+        }
     }
 
 }

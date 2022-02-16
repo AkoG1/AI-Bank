@@ -1,9 +1,12 @@
-package com.example.aibank.ui.utils
+package com.example.aibank.repository
 
 import android.util.Log
 import com.example.aibank.models.ConvertJson
+import com.example.aibank.models.CryptoData
 import com.example.aibank.models.Currency
 import com.example.aibank.ui.network.ApiService
+import com.example.aibank.ui.network.CryptoApiService
+import com.example.aibank.ui.utils.Resource
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.ktx.auth
@@ -12,7 +15,7 @@ import java.lang.Exception
 import javax.inject.Inject
 
 
-class Repository @Inject constructor(private val apiService: ApiService) {
+class Repository @Inject constructor(private val apiService: ApiService, private val cryptoApiService: CryptoApiService) {
 
 
     private val auth = Firebase.auth
@@ -28,22 +31,6 @@ class Repository @Inject constructor(private val apiService: ApiService) {
 
     fun logInUser(email: String, password: String): Task<AuthResult> {
         return auth.signInWithEmailAndPassword(email, password)
-    }
-
-//    fun signOut() {
-//        auth.signOut()
-//    }
-
-    suspend fun sendSMS(phoneNumber: String, sender: String, message: String) {
-
-        apiService.requestSMS(
-            phoneNumber,
-            sender,
-            message,
-            "simple-sms-sender.p.rapidapi.com",
-            "771843af12msh78120f126dfe56cp1c2776jsn2b6b34c62123"
-        )
-        Log.d("12345", "sendSMS: 11111")
     }
 
     suspend fun getCurrencies(): Resource<MutableList<Currency.CommercialRates>> {
@@ -89,5 +76,34 @@ class Repository @Inject constructor(private val apiService: ApiService) {
         val response = apiService.convert(amount, from, to, "66juH27XPTdaLmfW5auEY6Su492MQbgQ")
         val responseBody = response.body()
         return responseBody!!
+    }
+
+    suspend fun getCryptos() : Resource<MutableList<CryptoData.CryptoDataItem>> {
+        return try {
+            val response = cryptoApiService.getData("usd", "market_cap_desc", 50, false)
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null){
+                Resource.Success(responseBody)
+            }else {
+                Resource.Error(response.message().toString(), responseBody)
+            }
+        }catch (e: Exception){
+            Resource.Error(e.message)
+        }
+    }
+
+    suspend fun getCryptoById(id: String) : Resource<MutableList<CryptoData.CryptoDataItem>> {
+        return try {
+            val response = cryptoApiService.getDataById("usd",id,  "market_cap_desc", 50, false)
+            val responseBody = response.body()
+
+            if (response.isSuccessful && responseBody != null){
+                Resource.Success(responseBody)
+            }else {
+                Resource.Error(response.message().toString())
+            }
+        }catch (e: Exception) {
+            Resource.Error(e.message)
+        }
     }
 }

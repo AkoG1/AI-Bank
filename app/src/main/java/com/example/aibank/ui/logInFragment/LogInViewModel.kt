@@ -4,7 +4,7 @@ package com.example.aibank.ui.logInFragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aibank.ui.utils.AuthStates
-import com.example.aibank.ui.utils.Repository
+import com.example.aibank.repository.Repository
 import com.example.aibank.ui.utils.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
