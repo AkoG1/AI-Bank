@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aibank.databinding.CryptoItemLayoutBinding
 import com.example.aibank.models.CryptoData
-import com.example.cryptofragment.extensions.setImage
+import com.example.aibank.extensions.setImage
 
 class CryptoRecyclerAdapter : RecyclerView.Adapter<CryptoRecyclerAdapter.ViewHolder>() {
 

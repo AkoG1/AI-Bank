@@ -15,7 +15,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun start() {
         binding.bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_bottomnavigation_gel))
-        binding.bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_launcher_background))
+        binding.bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_markets))
         binding.bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_launcher_foreground))
 
         binding.bottomNavigation.setOnClickMenuListener {

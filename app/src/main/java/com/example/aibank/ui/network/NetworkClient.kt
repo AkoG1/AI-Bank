@@ -13,7 +13,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkClient {
 
-    private const val BASE_URL = "https://api.tbcbank.ge/v1/"
+    private const val BASE_URL_TBC = "https://api.tbcbank.ge/v1/"
+
+    private const val BASE_URL_CRYPTO = "https://api.coingecko.com"
 
     @Singleton
     @Provides
@@ -25,13 +27,19 @@ object NetworkClient {
     @Singleton
     @Provides
     fun provideRetrofit(gsonConverterFactory: GsonConverterFactory): Retrofit.Builder {
-        return Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(gsonConverterFactory)
+        return Retrofit.Builder().addConverterFactory(gsonConverterFactory)
     }
 
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit.Builder): ApiService {
-        return retrofit.build().create(ApiService::class.java)
+        return retrofit.baseUrl(BASE_URL_TBC).build().create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCryptoApiService(retrofit: Retrofit.Builder): CryptoApiService {
+        return retrofit.baseUrl(BASE_URL_CRYPTO).build().create(CryptoApiService::class.java)
     }
 
 }

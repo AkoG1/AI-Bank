@@ -1,8 +1,8 @@
-package com.example.cryptofragment.extensions
+package com.example.aibank.extensions
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.example.cryptofragment.R
+import com.example.aibank.R
 
 fun ImageView.setImage(url: String?) {
 

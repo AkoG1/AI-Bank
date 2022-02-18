@@ -15,7 +15,10 @@ import java.lang.Exception
 import javax.inject.Inject
 
 
-class Repository @Inject constructor(private val apiService: ApiService, private val cryptoApiService: CryptoApiService) {
+class Repository @Inject constructor(
+    private val apiService: ApiService,
+    private val cryptoApiService: CryptoApiService
+) {
 
 
     private val auth = Firebase.auth
@@ -78,31 +81,31 @@ class Repository @Inject constructor(private val apiService: ApiService, private
         return responseBody!!
     }
 
-    suspend fun getCryptos() : Resource<MutableList<CryptoData.CryptoDataItem>> {
+    suspend fun getCryptos(): Resource<MutableList<CryptoData.CryptoDataItem>> {
         return try {
             val response = cryptoApiService.getData("usd", "market_cap_desc", 50, false)
             val responseBody = response.body()
-            if (response.isSuccessful && responseBody != null){
+            if (response.isSuccessful && responseBody != null) {
                 Resource.Success(responseBody)
-            }else {
+            } else {
                 Resource.Error(response.message().toString(), responseBody)
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Resource.Error(e.message)
         }
     }
 
-    suspend fun getCryptoById(id: String) : Resource<MutableList<CryptoData.CryptoDataItem>> {
+    suspend fun getCryptoById(id: String): Resource<MutableList<CryptoData.CryptoDataItem>> {
         return try {
-            val response = cryptoApiService.getDataById("usd",id,  "market_cap_desc", 50, false)
+            val response = cryptoApiService.getDataById("usd", id, "market_cap_desc", 50, false)
             val responseBody = response.body()
 
-            if (response.isSuccessful && responseBody != null){
+            if (response.isSuccessful && responseBody != null) {
                 Resource.Success(responseBody)
-            }else {
+            } else {
                 Resource.Error(response.message().toString())
             }
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             Resource.Error(e.message)
         }
     }

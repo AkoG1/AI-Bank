@@ -12,15 +12,6 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("{number}/{sender}/{message}")
-    suspend fun requestSMS(
-        @Path("number") phoneNumber: String,
-        @Path("sender") sender: String,
-        @Path("message") message: String,
-        @Header("x-rapidapi-host") xrapidapihost: String,
-        @Header("x-rapidapi-key") apikey: String
-    )
-
     @GET("exchange-rates/commercial")
     suspend fun getCurrencyList(@Header("apikey") apikey: String): Response<Currency>
 
