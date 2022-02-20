@@ -47,5 +47,19 @@
         android:id="@+id/homeFragment"
         android:name="com.example.aibank.ui.homeFragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_convertDialogFragment2"
+            app:destination="@id/convertDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.aibank.ui.profileFragment.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" />
+    <dialog
+        android:id="@+id/convertDialogFragment"
+        android:name="com.example.aibank.ui.dialogCurrencyFragment.ConvertDialogFragment"
+        android:label="fragment_convert_dialog_list_dialog"
+        tools:layout="@layout/fragment_convert_dialog_list_dialog" />
 </navigation>

@@ -26,7 +26,6 @@ class ConvertDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentConvertDialogListDialogBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -34,7 +33,7 @@ class ConvertDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentListener()
+//        setFragmentListener()
     }
 
     private fun setFragmentListener() {

@@ -67,6 +67,7 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
                         is Resource.Loading -> binding.swipeRefreshLayout.isRefreshing = true
                         is Resource.Success -> {
                             initRecyclerView(it.data!!)
+                            commercialList.addAll(it.data)
                             binding.swipeRefreshLayout.isRefreshing = false
                         }
                         is Resource.Error -> {
@@ -170,7 +171,8 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
             fromOrTo = true
             binding.fromET.text?.clear()
             binding.toET.text?.clear()
-            findNavController().navigate(R.id.action_currencyFragment_to_convertDialogFragment)
+//            val action = CurrencyFragmentDirections.actionCurrencyFragmentToConvertDialogFragment()
+//            findNavController().navigate(action)
         }
 
         binding.toTV.setOnClickListener {
@@ -181,7 +183,8 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
             fromOrTo = false
             binding.fromET.text?.clear()
             binding.toET.text?.clear()
-            findNavController().navigate(R.id.action_currencyFragment_to_convertDialogFragment)
+//            val action = CurrencyFragmentDirections.actionCurrencyFragmentToConvertDialogFragment()
+//            findNavController().navigate(action)
         }
 
     }

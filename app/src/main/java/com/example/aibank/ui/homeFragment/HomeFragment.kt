@@ -2,12 +2,14 @@ package com.example.aibank.ui.homeFragment
 
 
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.aibank.R
 import com.example.aibank.databinding.FragmentHomeBinding
 import com.example.aibank.ui.currencyFragment.CurrencyFragment
 import com.example.aibank.ui.BaseFragment
 import com.example.aibank.ui.cryptoFragment.CryptoFragment
+import com.example.aibank.ui.profileFragment.ProfileFragment
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -22,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             when(it.id){
                 1 -> setFragment(CurrencyFragment.newInstance())
                 2 -> setFragment(CryptoFragment.newInstance())
-//                3 -> setFragment(ProfileFragment.newInstance())
+                3 -> setFragment(ProfileFragment.newInstance())
 
             }
         }
