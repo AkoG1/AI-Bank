@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aibank.databinding.CryptoItemLayoutBinding
-import com.example.aibank.models.CryptoData
 import com.example.aibank.extensions.setImage
+import com.example.aibank.models.CryptoDataItem
 
-class CryptoRecyclerAdapter : RecyclerView.Adapter<CryptoRecyclerAdapter.ViewHolder>() {
+class CryptoRecyclerAdapter(private val onCryptoItemClicked: ((model: CryptoDataItem) -> Unit)? = null) : RecyclerView.Adapter<CryptoRecyclerAdapter.ViewHolder>() {
 
-    private val cryptoList = mutableListOf<CryptoData.CryptoDataItem>()
+    private val cryptoList = mutableListOf<CryptoDataItem>()
 
     inner class ViewHolder(private val binding: CryptoItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,6 +21,9 @@ class CryptoRecyclerAdapter : RecyclerView.Adapter<CryptoRecyclerAdapter.ViewHol
                 cryptoShortName.text = model.symbol
                 cryptoFullName.text = model.name
                 price.text = model.current_price.toString()
+                itemView.setOnClickListener {
+                    onCryptoItemClicked?.invoke(model)
+                }
             }
         }
     }
@@ -39,7 +42,7 @@ class CryptoRecyclerAdapter : RecyclerView.Adapter<CryptoRecyclerAdapter.ViewHol
     override fun getItemCount() = cryptoList.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(cryptoList: MutableList<CryptoData.CryptoDataItem>) {
+    fun setData(cryptoList: MutableList<CryptoDataItem>) {
         this.cryptoList.clear()
         this.cryptoList.addAll(cryptoList)
         notifyDataSetChanged()

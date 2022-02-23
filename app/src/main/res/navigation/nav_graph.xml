@@ -51,14 +51,24 @@
         <action
             android:id="@+id/action_homeFragment_to_convertDialogFragment2"
             app:destination="@id/convertDialogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cryptoDetailsFragment"
+            app:destination="@id/cryptoDetailsFragment" />
     </fragment>
     <dialog
         android:id="@+id/convertDialogFragment"
         android:name="com.example.aibank.ui.dialogCurrencyFragment.ConvertDialogFragment"
         android:label="fragment_convert_dialog_list_dialog"
         tools:layout="@layout/fragment_convert_dialog_list_dialog" >
-        <argument
-            android:name="commercialList"
-            app:argType="com.example.aibank.models.Currency$CommercialRates[]" />
     </dialog>
+    <fragment
+        android:id="@+id/cryptoDetailsFragment"
+        android:name="com.example.aibank.ui.cryptoDetailsFragment.CryptoDetailsFragment"
+        android:label="crypto_details_fragment"
+        tools:layout="@layout/crypto_details_fragment" >
+        <argument
+            android:name="model"
+            app:argType="com.example.aibank.models.CryptoDataItem"
+            app:nullable="true" />
+    </fragment>
 </navigation>

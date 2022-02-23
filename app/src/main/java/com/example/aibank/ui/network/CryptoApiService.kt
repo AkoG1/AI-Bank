@@ -1,6 +1,6 @@
 package com.example.aibank.ui.network
 
-import com.example.aibank.models.CryptoData
+import com.example.aibank.models.CryptoDataItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,7 +17,7 @@ interface CryptoApiService {
         perPage: Int,
         @Query("sparkline")
         sparkline: Boolean
-    ): Response<MutableList<CryptoData.CryptoDataItem>>
+    ): Response<MutableList<CryptoDataItem>>
 
     @GET("/api/v3/coins/markets")
     suspend fun getDataById(
@@ -31,6 +31,6 @@ interface CryptoApiService {
         perPage: Int,
         @Query("sparkline")
         sparkline: Boolean
-    ): Response<MutableList<CryptoData.CryptoDataItem>>
+    ): Response<MutableList<CryptoDataItem>>
 
 }

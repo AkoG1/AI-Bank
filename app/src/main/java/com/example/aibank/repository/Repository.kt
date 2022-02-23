@@ -2,7 +2,7 @@ package com.example.aibank.repository
 
 import android.util.Log
 import com.example.aibank.models.ConvertModel
-import com.example.aibank.models.CryptoData
+import com.example.aibank.models.CryptoDataItem
 import com.example.aibank.models.Currency
 import com.example.aibank.ui.network.ApiService
 import com.example.aibank.ui.network.CryptoApiService
@@ -25,9 +25,6 @@ class Repository @Inject constructor(
     fun registerUser(
         email: String,
         password: String,
-        username: String,
-        phoneNumber: String? = null,
-        adult: Boolean? = null
     ): Task<AuthResult> {
         return auth.createUserWithEmailAndPassword(email, password)
     }
@@ -38,19 +35,17 @@ class Repository @Inject constructor(
 
     suspend fun getCurrencies(): Resource<MutableList<Currency.CommercialRates>> {
         return try {
-            val response = apiService.getCurrencyList(apikey = "66juH27XPTdaLmfW5auEY6Su492MQbgQ")
+            val response = apiService.getCurrencyList(apikey = API_KEY_TBC)
             val responseBody = response.body()
             if (response.isSuccessful && responseBody != null) {
                 Resource.Success(responseBody.commercialRatesList as MutableList<Currency.CommercialRates>)
             } else {
-                Log.d("12345", "getCurrencies: ${response.message()}")
                 Resource.Error(
                     response.message().toString(),
                     responseBody!!.commercialRatesList as MutableList<Currency.CommercialRates>
                 )
             }
         } catch (e: Exception) {
-            Log.d("12345", "getCurrencies: ${e.message}")
             Resource.Error(e.message)
         }
     }
@@ -58,8 +53,8 @@ class Repository @Inject constructor(
     suspend fun getMainCurrencies(): Resource<MutableList<Currency.CommercialRates>> {
         return try {
             val response = apiService.getMainCurrencyList(
-                currency = "usd,eur,gbp",
-                apikey = "66juH27XPTdaLmfW5auEY6Su492MQbgQ"
+                currency = MAIN_CURRENCIES,
+                apikey = API_KEY_TBC
             )
             val responseBody = response.body()
             if (response.isSuccessful && responseBody != null) {
@@ -76,14 +71,14 @@ class Repository @Inject constructor(
     }
 
     suspend fun convertPreview(amount: String, from: String, to: String): ConvertModel {
-        val response = apiService.convert(amount, from, to, "66juH27XPTdaLmfW5auEY6Su492MQbgQ")
+        val response = apiService.convert(amount, from, to, API_KEY_TBC)
         val responseBody = response.body()
         return responseBody!!
     }
 
-    suspend fun getCryptos(): Resource<MutableList<CryptoData.CryptoDataItem>> {
+    suspend fun getCryptos(): Resource<MutableList<CryptoDataItem>> {
         return try {
-            val response = cryptoApiService.getData("usd", "market_cap_desc", 50, false)
+            val response = cryptoApiService.getData(USD, MARKET_CAP_DESC, FIFTY, false)
             val responseBody = response.body()
             if (response.isSuccessful && responseBody != null) {
                 Resource.Success(responseBody)
@@ -95,9 +90,9 @@ class Repository @Inject constructor(
         }
     }
 
-    suspend fun getCryptoById(id: String): Resource<MutableList<CryptoData.CryptoDataItem>> {
+    suspend fun getCryptoById(id: String): Resource<MutableList<CryptoDataItem>> {
         return try {
-            val response = cryptoApiService.getDataById("usd", id, "market_cap_desc", 50, false)
+            val response = cryptoApiService.getDataById(USD, id, MARKET_CAP_DESC, FIFTY, false)
             val responseBody = response.body()
 
             if (response.isSuccessful && responseBody != null) {
@@ -108,5 +103,13 @@ class Repository @Inject constructor(
         } catch (e: Exception) {
             Resource.Error(e.message)
         }
+    }
+
+    companion object {
+        private const val API_KEY_TBC = "66juH27XPTdaLmfW5auEY6Su492MQbgQ"
+        private const val USD = "usd"
+        private const val MARKET_CAP_DESC = "market_cap_desc"
+        private const val FIFTY = 50
+        private const val MAIN_CURRENCIES = "usd,eur,gbp"
     }
 }

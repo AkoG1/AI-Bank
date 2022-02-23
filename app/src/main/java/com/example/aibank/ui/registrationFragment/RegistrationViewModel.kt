@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.aibank.ui.utils.AuthStates
 import com.example.aibank.repository.Repository
 import com.example.aibank.ui.utils.User
-import com.example.aibankv10.ui.others.uploadUserData
+import com.example.aibank.ui.utils.uploadUserData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -28,10 +28,16 @@ class RegistrationViewModel @Inject constructor(private val repository: Reposito
 
         _authStateFlow.emit(AuthStates.Loading)
 
-        repository.registerUser(email, password, username, phoneNumber).addOnSuccessListener {
+        repository.registerUser(email = email, password = password).addOnSuccessListener {
 
             val user = User(it.user?.uid, email, password, username, phoneNumber)
-            uploadUserData(it.user?.uid!!, username = username, phoneNumber, context)
+            uploadUserData(
+                it.user?.uid!!,
+                username = username,
+                phoneNumber = phoneNumber,
+                context,
+                money = ZERO
+            )
 
             viewModelScope.launch {
                 _authStateFlow.emit(AuthStates.AuthSuccess(user))
@@ -44,5 +50,9 @@ class RegistrationViewModel @Inject constructor(private val repository: Reposito
             }
 
         }
+    }
+
+    companion object {
+        private const val ZERO = 0.0
     }
 }

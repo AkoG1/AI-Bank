@@ -43,5 +43,11 @@
     <string name="phone_number_format_995">Phone number (Format 995*********)</string>
     <string name="markets">Markets</string>
     <string name="search">Search By Id</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="h_24">H 24</string>
+    <string name="l_24">L 24</string>
+    <string name="_24">% 24</string>
+    <string name="ath">ATH</string>
+    <string name="atl">ATL</string>
     <string name="dollar">$</string>
 </resources>

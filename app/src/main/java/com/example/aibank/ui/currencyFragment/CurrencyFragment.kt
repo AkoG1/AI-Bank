@@ -184,14 +184,3 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

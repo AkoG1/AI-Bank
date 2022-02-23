@@ -8,12 +8,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aibank.R
 import com.example.aibank.adapters.CryptoRecyclerAdapter
 import com.example.aibank.databinding.CryptoFragmentBinding
-import com.example.aibank.models.CryptoData
+import com.example.aibank.models.CryptoDataItem
 import com.example.aibank.ui.BaseFragment
-import com.example.aibank.ui.currencyFragment.CurrencyFragment
+import com.example.aibank.ui.homeFragment.HomeFragmentDirections
 import com.example.aibank.ui.network.NetworkConnection
 import com.example.aibank.ui.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -114,11 +116,18 @@ class CryptoFragment : BaseFragment<CryptoFragmentBinding>(CryptoFragmentBinding
         }
     }
 
-    private fun initRecyclerView(cryptoList: MutableList<CryptoData.CryptoDataItem>) {
+    private fun initRecyclerView(cryptoList: MutableList<CryptoDataItem>) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = CryptoRecyclerAdapter()
+        adapter = CryptoRecyclerAdapter(:: openCryptoDetailsFragment)
         binding.recyclerView.adapter = adapter
         adapter.setData(cryptoList)
+    }
+
+    private fun openCryptoDetailsFragment(model : CryptoDataItem) {
+        val navHostFragment =
+            activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val action = HomeFragmentDirections.actionHomeFragmentToCryptoDetailsFragment(model)
+        navHostFragment.navController.navigate(action)
     }
 
     private fun cancelButtonTodo() {
