@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="@drawable/convert_dialog_fragment_background"
@@ -13,4 +13,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

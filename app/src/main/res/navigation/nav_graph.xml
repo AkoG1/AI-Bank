@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/succesfullRegistrationFragment"
-        android:name="com.example.aibank.ui.succesfullRegistrationFragment.SuccesfullRegistrationFragment"
+        android:name="com.example.aibank.ui.succesfullRegistrationFragment.SuccessRegistrationFragment"
         android:label="SuccesfullRegistrationFragment" >
         <argument
             android:name="Email"
@@ -52,14 +52,13 @@
             android:id="@+id/action_homeFragment_to_convertDialogFragment2"
             app:destination="@id/convertDialogFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.aibank.ui.profileFragment.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
     <dialog
         android:id="@+id/convertDialogFragment"
         android:name="com.example.aibank.ui.dialogCurrencyFragment.ConvertDialogFragment"
         android:label="fragment_convert_dialog_list_dialog"
-        tools:layout="@layout/fragment_convert_dialog_list_dialog" />
+        tools:layout="@layout/fragment_convert_dialog_list_dialog" >
+        <argument
+            android:name="commercialList"
+            app:argType="com.example.aibank.models.Currency$CommercialRates[]" />
+    </dialog>
 </navigation>

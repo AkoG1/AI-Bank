@@ -88,14 +88,6 @@ class RegistrationFragment :
                         when (it) {
                             is AuthStates.AuthSuccess -> {
                                 binding.progressbar.isVisible = false
-                                setFragmentResult(
-                                    "email",
-                                    bundleOf("bundleKey1" to email.toString())
-                                )
-                                setFragmentResult(
-                                    "password",
-                                    bundleOf("bundleKey2" to password.toString())
-                                )
                                 val action =
                                     RegistrationFragmentDirections.actionRegistrationFragmentToSuccesfullRegistrationFragment(
                                         email.toString(),

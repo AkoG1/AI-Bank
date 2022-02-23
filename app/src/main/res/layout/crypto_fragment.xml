@@ -35,20 +35,11 @@
             app:layout_constraintTop_toBottomOf="@id/guideline2" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/favorites"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/ic_favorites"
-            app:layout_constraintStart_toEndOf="@id/search"
-            app:layout_constraintTop_toBottomOf="@id/guideline2" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cancel"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="13dp"
+            android:layout_marginStart="40dp"
             android:background="@drawable/ic_cancel"
             android:visibility="invisible"
             app:layout_constraintStart_toEndOf="@id/guideline3"
@@ -67,7 +58,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="17sp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
 
         <androidx.recyclerview.widget.RecyclerView

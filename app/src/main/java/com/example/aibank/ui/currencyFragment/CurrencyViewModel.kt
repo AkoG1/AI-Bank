@@ -1,9 +1,8 @@
 package com.example.aibank.ui.currencyFragment
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aibank.models.ConvertJson
+import com.example.aibank.models.ConvertModel
 import com.example.aibank.models.Currency
 import com.example.aibank.repository.Repository
 import com.example.aibank.ui.utils.Resource
@@ -42,16 +41,23 @@ class CurrencyViewModel @Inject constructor(private val repository: Repository) 
     }
 
     private var _responseconvert =
-        MutableStateFlow<ConvertJson>(ConvertJson("0", "usd", "gel", "0"))
-    var responseconvert: StateFlow<ConvertJson> = _responseconvert
+        MutableStateFlow<ConvertModel>(ConvertModel(ZERO, USD, GEL, ZERO))
+    var responseconvert: StateFlow<ConvertModel> = _responseconvert
 
 
     fun convertCurrencies(amount: String, from: String, to: String) {
         viewModelScope.launch {
             val value = repository.convertPreview(amount, from, to)
             _responseconvert.emit(value)
-            Log.d("body1", "start: $value ")
         }
     }
 
+    val passedDataFromDialog = MutableStateFlow(USD_UPPER)
+
+    companion object {
+        private const val ZERO = "0"
+        private const val USD = "usd"
+        private const val GEL = "gel"
+        private const val USD_UPPER = "USD"
+    }
 }

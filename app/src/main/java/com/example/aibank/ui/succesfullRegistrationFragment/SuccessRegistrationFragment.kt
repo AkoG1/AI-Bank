@@ -8,10 +8,10 @@ import com.example.aibank.databinding.FragmentSuccesfullRegistrationBinding
 import com.example.aibank.ui.BaseFragment
 
 
-class SuccesfullRegistrationFragment :
+class SuccessRegistrationFragment :
     BaseFragment<FragmentSuccesfullRegistrationBinding>(FragmentSuccesfullRegistrationBinding::inflate) {
 
-    private val args: SuccesfullRegistrationFragmentArgs by navArgs()
+    private val args: SuccessRegistrationFragmentArgs by navArgs()
 
     override fun start() {
         collectArgs()
@@ -29,16 +29,9 @@ class SuccesfullRegistrationFragment :
     private fun setListeners() {
         binding.continueButton.setOnClickListener {
             val action =
-                SuccesfullRegistrationFragmentDirections.actionSuccesfullRegistrationFragmentToLogInFragment()
+                SuccessRegistrationFragmentDirections.actionSuccesfullRegistrationFragmentToLogInFragment()
             findNavController().navigate(action)
         }
-    }
-
-    companion object {
-        private const val EMAIL = "email"
-        private const val PASSWORD = "password"
-        private const val BUNDLE_1 = "bundle1"
-        private const val BUNDLE_2 = "bundle2"
     }
 
 }

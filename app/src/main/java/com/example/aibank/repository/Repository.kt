@@ -1,7 +1,7 @@
 package com.example.aibank.repository
 
 import android.util.Log
-import com.example.aibank.models.ConvertJson
+import com.example.aibank.models.ConvertModel
 import com.example.aibank.models.CryptoData
 import com.example.aibank.models.Currency
 import com.example.aibank.ui.network.ApiService
@@ -75,7 +75,7 @@ class Repository @Inject constructor(
         }
     }
 
-    suspend fun convertPreview(amount: String, from: String, to: String): ConvertJson {
+    suspend fun convertPreview(amount: String, from: String, to: String): ConvertModel {
         val response = apiService.convert(amount, from, to, "66juH27XPTdaLmfW5auEY6Su492MQbgQ")
         val responseBody = response.body()
         return responseBody!!

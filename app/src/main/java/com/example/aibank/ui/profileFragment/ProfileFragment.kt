@@ -26,8 +26,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.profile_fragment, container, false)
         view.setOnClickListener {
-             val navHostFragment =  activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            navHostFragment.navController.navigate(R.id.action_homeFragment_to_convertDialogFragment2)
+
         }
         return view
     }

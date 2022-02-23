@@ -2,26 +2,23 @@ package com.example.aibank.ui.currencyFragment
 
 import android.view.View
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aibank.R
 import com.example.aibank.adapters.CurrencyListAdapter
+import com.example.aibank.adapters.MainCurrenciesAdapter
 import com.example.aibank.databinding.CurrencyFragmentBinding
 import com.example.aibank.models.Currency
+import com.example.aibank.ui.BaseFragment
 import com.example.aibank.ui.network.NetworkConnection
 import com.example.aibank.ui.utils.Resource
-import com.example.aibank.adapters.MainCurrenciesAdapter
-import com.example.aibank.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -31,9 +28,7 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
 
     private lateinit var adapter: MainCurrenciesAdapter
 
-    private val viewModel: CurrencyViewModel by viewModels()
-
-    private var commercialList = mutableListOf<Currency.CommercialRates>()
+    private val viewModel: CurrencyViewModel by activityViewModels()
 
     private var fromOrTo = false
 
@@ -45,18 +40,8 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
         loadLayoutData()
         convertPreview()
         setListeners()
-        getCurrencyFromDialog()
         checkConnection()
-    }
-
-    private fun getCurrencyFromDialog() {
-        setFragmentResultListener("currencyName") { requestKey, bundle ->
-            if (fromOrTo) {
-                binding.fromTV.text = bundle.getString("bundle4")
-            } else {
-                binding.toTV.text = bundle.getString("bundle4")
-            }
-        }
+        collectPassedData()
     }
 
     private fun collect() {
@@ -67,13 +52,26 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
                         is Resource.Loading -> binding.swipeRefreshLayout.isRefreshing = true
                         is Resource.Success -> {
                             initRecyclerView(it.data!!)
-                            commercialList.addAll(it.data)
                             binding.swipeRefreshLayout.isRefreshing = false
                         }
                         is Resource.Error -> {
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                             binding.swipeRefreshLayout.isRefreshing = false
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectPassedData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.passedDataFromDialog.collect {
+                    if (fromOrTo) {
+                        binding.fromTV.text = it
+                    } else {
+                        binding.toTV.text = it
                     }
                 }
             }
@@ -121,7 +119,7 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
     private fun convertPreview() {
         binding.fromET.addTextChangedListener { text ->
 
-            if (text.toString() != "") {
+            if (text.toString() != EMPTY) {
                 viewModel.convertCurrencies(
                     binding.fromET.text.toString(),
                     binding.fromTV.text.toString().lowercase(),
@@ -130,63 +128,37 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
                 viewLifecycleOwner.lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         viewModel.responseconvert.collect {
-                            binding.toET.setText(it.value)
+                            binding.toET.text = it.value
                         }
                     }
                 }
+            } else if (text.toString() == EMPTY) {
+                binding.toET.text = EMPTY
             }
         }
-
-
-        binding.toET.setOnClickListener {
-            binding.fromET.setText("")
-            binding.toET.setText("")
-            binding.toET.addTextChangedListener { text ->
-                if (text.toString() != "") {
-                    viewModel.convertCurrencies(
-                        binding.toET.text.toString(),
-                        binding.toTV.text.toString().lowercase(),
-                        binding.fromTV.text.toString().lowercase()
-                    )
-                    viewLifecycleOwner.lifecycleScope.launch {
-                        repeatOnLifecycle(Lifecycle.State.STARTED) {
-                            viewModel.responseconvert.collect {
-                                binding.fromET.setText(it.value)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
     }
 
     private fun setListeners() {
         binding.fromTV.setOnClickListener {
-            setFragmentResult(
-                "commercialList",
-                bundleOf("bundle3" to commercialList as ArrayList<Currency.CommercialRates>)
-            )
             fromOrTo = true
             binding.fromET.text?.clear()
-            binding.toET.text?.clear()
-//            val action = CurrencyFragmentDirections.actionCurrencyFragmentToConvertDialogFragment()
-//            findNavController().navigate(action)
+            binding.toET.text = EMPTY
+            openBottomSheetDialogFragment()
         }
 
         binding.toTV.setOnClickListener {
-            setFragmentResult(
-                "commercialList",
-                bundleOf("bundle3" to commercialList as ArrayList<Currency.CommercialRates>)
-            )
             fromOrTo = false
             binding.fromET.text?.clear()
-            binding.toET.text?.clear()
-//            val action = CurrencyFragmentDirections.actionCurrencyFragmentToConvertDialogFragment()
-//            findNavController().navigate(action)
+            binding.toET.text = EMPTY
+            openBottomSheetDialogFragment()
         }
 
+    }
+
+    private fun openBottomSheetDialogFragment() {
+        val navHostFragment =
+            activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navHostFragment.navController.navigate(R.id.action_homeFragment_to_convertDialogFragment2)
     }
 
     private fun checkConnection() {
@@ -207,6 +179,8 @@ class CurrencyFragment : BaseFragment<CurrencyFragmentBinding>(CurrencyFragmentB
         fun newInstance(): CurrencyFragment {
             return CurrencyFragment()
         }
+
+        private const val EMPTY = ""
     }
 
 }

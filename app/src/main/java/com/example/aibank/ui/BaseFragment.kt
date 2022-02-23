@@ -35,5 +35,12 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         _binding = null
     }
 
+    companion object {
+        const val EMAIL = "email"
+        const val PASSWORD = "password"
+        const val BUNDLE_1 = "bundle1"
+        const val BUNDLE_2 = "bundle2"
+    }
+
 
 }

@@ -1,20 +1,26 @@
 package com.example.aibank.ui.dialogCurrencyFragment
 
 import android.os.Bundle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aibank.adapters.CurrencyAdapterForDialogFragment
-import com.example.aibank.adapters.CurrencyListAdapter
 import com.example.aibank.databinding.FragmentConvertDialogListDialogBinding
 import com.example.aibank.models.Currency
+import com.example.aibank.ui.currencyFragment.CurrencyViewModel
+import com.example.aibank.ui.utils.Resource
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class ConvertDialogFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentConvertDialogListDialogBinding? = null
@@ -22,10 +28,12 @@ class ConvertDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var adapter: CurrencyAdapterForDialogFragment
 
+    private val viewModel: CurrencyViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentConvertDialogListDialogBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -33,38 +41,46 @@ class ConvertDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        setFragmentListener()
+        viewModel.loadCurrencies()
+        collect()
     }
 
-    private fun setFragmentListener() {
-        setFragmentResultListener(COMMERCIAL_LIST) { _, bundle ->
-            if (bundle.getParcelableArrayList<Currency.CommercialRates>(BUNDLE_3) != null) {
-                initRecyclerView(bundle.getParcelableArrayList<Currency.CommercialRates>(BUNDLE_4) as ArrayList<Currency.CommercialRates>)
+    private fun collect() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.response.collect {
+                    when (it) {
+                        is Resource.Loading -> binding.swipeRefresh.isRefreshing = true
+                        is Resource.Success -> {
+                            initRecyclerView(it.data!!)
+                            binding.swipeRefresh.isRefreshing = false
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            binding.swipeRefresh.isRefreshing = false
+                            dialog?.dismiss()
+                        }
+                    }
+                }
             }
         }
     }
 
-    private fun initRecyclerView(list: ArrayList<Currency.CommercialRates>) {
+    private fun initRecyclerView(currencyNameList: MutableList<Currency.CommercialRates>) {
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         adapter = CurrencyAdapterForDialogFragment(::onCurrencyClick)
         binding.recycler.adapter = adapter
-        adapter.setData(list as MutableList<Currency.CommercialRates>)
+        adapter.setData(currencyNameList)
     }
 
-    private fun onCurrencyClick(currency: String) {
-        setFragmentResult(CURRENCY_NAME, bundleOf(BUNDLE_4 to currency))
+    private fun onCurrencyClick(currencyName: String) {
+        viewModel.passedDataFromDialog.value = currencyName
         dialog?.dismiss()
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        private const val COMMERCIAL_LIST = "commercialList"
-        private const val BUNDLE_3 = "bundle3"
-        private const val BUNDLE_4 = "bundle4"
-        private const val CURRENCY_NAME = "currencyName"
     }
 }

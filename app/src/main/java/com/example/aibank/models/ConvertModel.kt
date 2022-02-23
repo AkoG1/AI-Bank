@@ -3,7 +3,7 @@ package com.example.aibank.models
 
 import com.google.gson.annotations.SerializedName
 
-data class ConvertJson(
+data class ConvertModel(
     @SerializedName("amount")
     val amount: String?,
     @SerializedName("from")
